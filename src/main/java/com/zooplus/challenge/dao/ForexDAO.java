@@ -14,6 +14,9 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.List;
 
+/**
+ * Data Access Object for {@link Conversions} entity
+ */
 @Component
 public class ForexDAO {
 
@@ -37,6 +40,7 @@ public class ForexDAO {
         return executeQuery("SELECT c FROM Conversions c WHERE c.userId='" + userId + "' ORDER BY c.id DESC");
     }
 
+    @Transactional
     public List<Conversions> executeQuery(String queryString) {
         logger.info("Executing query - [{}]", queryString);
         TypedQuery<Conversions> query = em.createQuery(queryString, Conversions.class);

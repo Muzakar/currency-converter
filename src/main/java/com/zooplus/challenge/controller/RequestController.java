@@ -16,6 +16,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.io.IOException;
 import java.math.BigDecimal;
 
+/**
+ * All the requests from the user will be controlled via this class
+ */
 @Controller
 public class RequestController {
 
@@ -27,6 +30,14 @@ public class RequestController {
     @Autowired
     private CurrencyConverter currencyConverter;
 
+    /**
+     * Once user fills his user id and password in login page and clicks on login button.
+     *
+     * @param userId
+     * @param password
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/validate", method = RequestMethod.POST)
     public String login(@RequestParam(required = true) String userId, @RequestParam(required = true) String password, Model model) {
         if (userServices.isValidUser(userId, password)) {
@@ -41,11 +52,16 @@ public class RequestController {
         }
     }
 
-    @RequestMapping(value = "/logout", method = RequestMethod.GET)
-    public String logout() {
-        return "login";
-    }
-
+    /**
+     * When user fills the data in registration page and clicks on submit button.
+     *
+     * @param userId
+     * @param userName
+     * @param password
+     * @param email
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public String register(@RequestParam(required = true) String userId,
                            @RequestParam(required = true) String userName,
@@ -63,6 +79,16 @@ public class RequestController {
         }
     }
 
+    /**
+     * When the form is submitted to do the conversion. This method is called.
+     *
+     * @param fromCurrency
+     * @param fromAmount
+     * @param toCurrency
+     * @param userId
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/convert", method = RequestMethod.POST)
     public String conversionPage(@RequestParam(required = true) String fromCurrency,
                                  @RequestParam(required = true) BigDecimal fromAmount,
@@ -71,6 +97,8 @@ public class RequestController {
                                  Model model) {
         try {
             if (!StringUtils.isBlank(userId)) {
+                fromCurrency = fromCurrency.toUpperCase();
+                toCurrency = toCurrency.toUpperCase();
                 BigDecimal toAmount = currencyConverter.convert(userId, fromAmount, fromCurrency, toCurrency);
                 model.addAttribute("userId", userId);
                 model.addAttribute("fromCurrency", fromCurrency);
@@ -91,13 +119,35 @@ public class RequestController {
         }
     }
 
+    /**
+     * Registration page will be returned.
+     * Index page will have two links. This is one of the links.
+     *
+     * @return - name of registration page
+     */
     @RequestMapping(value = "/getRegistered", method = RequestMethod.GET)
     public String registrationPage() {
         return "register";
     }
 
+    /**
+     * Login page will be returned.
+     * Index page will have two links. This is one of the links.
+     *
+     * @return - name of login page
+     */
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String loginPage() {
+        return "login";
+    }
+
+    /**
+     * By clicking on logout link, User should be redirected to login page.
+     *
+     * @return - name of login page
+     */
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public String logout() {
         return "login";
     }
 

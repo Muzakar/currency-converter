@@ -5,6 +5,9 @@ import com.zooplus.challenge.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+/**
+ * Service layer for {@link User} maintenance.
+ */
 @Service
 public class UserServices {
 

@@ -5,6 +5,9 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
+/**
+ * Stores all the data related to conversions carried out by users.
+ */
 @Entity
 @Table(name="CONVERSIONS")
 public class Conversions implements Serializable {

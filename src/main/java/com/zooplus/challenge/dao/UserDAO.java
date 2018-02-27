@@ -11,6 +11,9 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
+/**
+ * Data Access Object for {@link User} entity
+ */
 @Component
 public class UserDAO {
 

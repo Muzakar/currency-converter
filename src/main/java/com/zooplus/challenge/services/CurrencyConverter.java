@@ -9,6 +9,9 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.List;
 
+/**
+ * Service layer for {@link Conversions}
+ */
 @Service
 public class CurrencyConverter {
 

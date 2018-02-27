@@ -5,6 +5,9 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
 
+/**
+ * Entity to store user information
+ */
 @Entity
 @Table(name="USER")
 public class User implements Serializable {
