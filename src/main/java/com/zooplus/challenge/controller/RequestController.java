@@ -31,7 +31,9 @@ public class RequestController {
     @RequestMapping(value = "/validate", method = RequestMethod.POST)
     public String login(@RequestParam(required = true) String userId, @RequestParam(required = true) String password, Model model) {
         if (userServices.isValidUser(userId, password)) {
-            model.addAttribute("userId", userId);
+            User user = userServices.fetchUser(userId);
+            model.addAttribute("userId", user.getUserId());
+            model.addAttribute("userName", user.getUserName());
             model.addAttribute("conversions", currencyConverter.getAllConversionsForUser(userId));
             return "converter";
         } else {
@@ -59,7 +61,6 @@ public class RequestController {
             user.setEmail(email);
             user.setActive(true);
             userServices.registerUser(user);
-            model.addAttribute("userId", userId);
             return "success";
         } else {
             model.addAttribute("message", "UserId already exists");

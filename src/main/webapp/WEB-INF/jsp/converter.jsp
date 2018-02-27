@@ -16,6 +16,7 @@ table, th, td {
 <body>
 	<h2>Currency Converter</h2>
 	<h3> Welcome ${userName} </h3>
+	<a href="logout">Logout</a>
 	<form method="post" action="convert">
 	<input type="hidden" name="userId" id="userId" value="${userId}" />
 		<table>
