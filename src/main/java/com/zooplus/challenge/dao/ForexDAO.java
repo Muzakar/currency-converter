@@ -26,19 +26,21 @@ public class ForexDAO {
         return YahooFinance.getFx(fromCurrency + toCurrency + "=X").getPrice();
     }
 
-    public BigDecimal fetchHistoricalForex() {
-        return BigDecimal.ZERO;
-    }
-
     @Transactional
     public void persist(Conversions conversions) {
         em.persist(conversions);
+        logger.info("Persisted Conversion - [{}]", conversions);
     }
 
     @Transactional
     public List<Conversions> getConversionsForUser(String userId) {
-        String queryString = "SELECT c FROM Conversions c WHERE c.userId='" + userId + "' ORDER BY c.id";
+        return executeQuery("SELECT c FROM Conversions c WHERE c.userId='" + userId + "' ORDER BY c.id DESC");
+    }
+
+    public List<Conversions> executeQuery(String queryString) {
+        logger.info("Executing query - [{}]", queryString);
         TypedQuery<Conversions> query = em.createQuery(queryString, Conversions.class);
+        logger.info("Query completed - [{}]", queryString);
         return query.getResultList();
     }
 

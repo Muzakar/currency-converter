@@ -67,4 +67,48 @@ public class User implements Serializable {
                 '}';
     }
 
+    public static class Builder {
+
+        private String userId;
+        private String userName;
+        private String password;
+        private String email;
+        private boolean active;
+
+        public Builder(String userId) {
+            this.userId = userId;
+        }
+
+        public Builder userName(String userName) {
+            this.userName = userName;
+            return this;
+        }
+
+        public Builder password (String password) {
+            this.password = password;
+            return this;
+        }
+
+        public Builder email (String email) {
+            this.email = email;
+            return this;
+        }
+
+        public Builder active (boolean active) {
+            this.active = active;
+            return this;
+        }
+
+        public User build() {
+            User user = new User();
+            user.setUserId(userId);
+            user.setUserName(userName);
+            user.setPassword(password);
+            user.setEmail(email);
+            user.setActive(active);
+            return user;
+        }
+
+    }
+
 }

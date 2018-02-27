@@ -8,6 +8,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+import java.util.List;
 
 @Component
 public class UserDAO {
@@ -20,18 +22,21 @@ public class UserDAO {
     @Transactional
     public void addUser(User user){
         em.persist(user);
+        logger.info("User with userId: [{}] is persisted", user.getUserId());
     }
 
     @Transactional
     public void updateUser(User user) {
-        em.persist(user);
+        em.merge(user);
+        logger.info("User with userId: [{}] is updated", user.getUserId());
     }
 
     @Transactional
     public void deactivateUser(String userId) {
         User user = findUser(userId);
         user.setActive(false);
-        em.persist(user);
+        em.merge(user);
+        logger.info("Deactivated user with userId: [{}]", userId);
     }
 
     @Transactional
@@ -39,6 +44,14 @@ public class UserDAO {
         User user = em.getReference(User.class, userId);
         logger.info("User retrieved :: " + user);
         return user;
+    }
+
+    @Transactional
+    public List<User> executeQuery(String queryString) {
+        logger.info("Executing query - [{}]", queryString);
+        TypedQuery<User> query = em.createQuery(queryString, User.class);
+        logger.info("Query completed - [{}]", queryString);
+        return query.getResultList();
     }
 
 }

@@ -1,5 +1,8 @@
 package com.zooplus.challenge.controller;
 
+import com.zooplus.challenge.model.User;
+import com.zooplus.challenge.services.CurrencyConverter;
+import com.zooplus.challenge.services.UserServices;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -9,10 +12,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import com.zooplus.challenge.model.User;
-import com.zooplus.challenge.services.CurrencyConverter;
-import com.zooplus.challenge.services.UserServices;
 
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -54,12 +53,8 @@ public class RequestController {
                            @RequestParam(required = true) String email,
                            Model model) {
         if (userServices.isUserIdAvailable(userId)) {
-            User user = new User();
-            user.setUserId(userId);
-            user.setUserName(userName);
-            user.setPassword(password);
-            user.setEmail(email);
-            user.setActive(true);
+            User user = new User.Builder(userId).userName(userName).password(password)
+                    .email(email).active(true).build();
             userServices.registerUser(user);
             return "success";
         } else {
