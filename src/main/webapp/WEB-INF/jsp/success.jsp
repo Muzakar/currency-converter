@@ -9,7 +9,7 @@
 <title>Currency Converter</title>
 </head>
 <body>
-	<h1>You are successfully registered .. !!</h1>
-	<a href="logout">Go to login page</a>
+	<h2>You are successfully registered .. !!</h2>
+	<button onclick="window.location='logout';">Go to login page</button>
 </body>
 </html>

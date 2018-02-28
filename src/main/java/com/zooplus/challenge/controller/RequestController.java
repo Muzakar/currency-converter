@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.Set;
 
 /**
  * All the requests from the user will be controlled via this class
@@ -29,6 +30,12 @@ public class RequestController {
 
     @Autowired
     private CurrencyConverter currencyConverter;
+
+    @Autowired
+    private Set<String> currencies;
+
+    @Autowired
+    private Set<String> countries;
 
     /**
      * Once user fills his user id and password in login page and clicks on login button.
@@ -45,6 +52,7 @@ public class RequestController {
             model.addAttribute("userId", user.getUserId());
             model.addAttribute("userName", user.getUserName());
             model.addAttribute("conversions", currencyConverter.getAllConversionsForUser(userId));
+            model.addAttribute("currencies", currencies);
             return "converter";
         } else {
             model.addAttribute("message", "Unable to login. Check userId and password");
@@ -67,10 +75,14 @@ public class RequestController {
                            @RequestParam(required = true) String userName,
                            @RequestParam(required = true) String password,
                            @RequestParam(required = true) String email,
+                           @RequestParam(required = true) String address,
+                           @RequestParam(required = true) String postcode,
+                           @RequestParam(required = true) String country,
                            Model model) {
         if (userServices.isUserIdAvailable(userId)) {
             User user = new User.Builder(userId).userName(userName).password(password)
-                    .email(email).active(true).build();
+                    .email(email).address(address).postcode(postcode).country(country).active(true)
+                    .build();
             userServices.registerUser(user);
             return "success";
         } else {
@@ -100,12 +112,11 @@ public class RequestController {
                 fromCurrency = fromCurrency.toUpperCase();
                 toCurrency = toCurrency.toUpperCase();
                 BigDecimal toAmount = currencyConverter.convert(userId, fromAmount, fromCurrency, toCurrency);
-                model.addAttribute("userId", userId);
-                model.addAttribute("fromCurrency", fromCurrency);
-                model.addAttribute("fromAmount", fromAmount);
-                model.addAttribute("toCurrency", toCurrency);
-                model.addAttribute("toAmount", toAmount);
+                User user = userServices.fetchUser(userId);
+                model.addAttribute("userId", user.getUserId());
+                model.addAttribute("userName", user.getUserName());
                 model.addAttribute("conversions", currencyConverter.getAllConversionsForUser(userId));
+                model.addAttribute("currencies", currencies);
                 return "converter";
             } else {
                 model.addAttribute("message", "Please make sure you have logged in.");
@@ -113,7 +124,7 @@ public class RequestController {
                 return "error";
             }
         } catch (IOException e) {
-            model.addAttribute("message", "Exception while retrieving FXQuote. Verify the currencies and amount");
+            model.addAttribute("message", "Unable to fetch FX Rate for the currencies. Please select different currencies");
             logger.error("Exception while fetching FXQuote. ", e);
             return "error";
         }
@@ -126,7 +137,8 @@ public class RequestController {
      * @return - name of registration page
      */
     @RequestMapping(value = "/getRegistered", method = RequestMethod.GET)
-    public String registrationPage() {
+    public String registrationPage(Model model) {
+        model.addAttribute("countries", countries);
         return "register";
     }
 
@@ -147,7 +159,8 @@ public class RequestController {
      * @return - name of login page
      */
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
-    public String logout() {
+    public String logout(Model model) {
+        model.addAttribute("userId", "");
         return "login";
     }
 

@@ -1,27 +1,25 @@
 <!DOCTYPE html>
 
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 
 <html>
 <head>
 <meta charset="utf-8">
 <title>Currency Converter</title>
 </head>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
 <body>
 	<h2>Currency converter Login</h2>
-	<form method="post" action="validate">
+	<form id="loginForm" method="post" action="validate">
 		<table>
 			<tbody>
 				<tr>
-					<td>Login:</td>
-					<td><input type="text" name="userId" id="userId" size="30"
-						maxlength="40" /></td>
+					<td>User Id:</td>
+					<td><input type="text" name="userId" id="userId" size="30" maxlength="40" /></td>
 				</tr>
 				<tr>
 					<td>Password:</td>
-					<td><input type="password" name="password" id="password"
-						size="30" maxlength="32" /></td>
+					<td><input type="password" name="password" id="password" size="30" maxlength="40" /></td>
 				</tr>
 				<tr>
 					<td></td>
@@ -31,4 +29,16 @@
 		</table>
 	</form>
 </body>
+<script>
+    jQuery("#loginForm").submit(function() {
+        if (jQuery("#userId").val() == "") {
+            alert("User Id must be present");
+            return false;
+        }
+        if (jQuery("#password").val() == "") {
+            alert("Password must be present")
+            return false;
+        }
+    });
+</script>
 </html>

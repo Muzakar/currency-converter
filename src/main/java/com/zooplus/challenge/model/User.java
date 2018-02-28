@@ -18,6 +18,9 @@ public class User implements Serializable {
     private String userName;
     private String password;
     private String email;
+    private String address;
+    private String postcode;
+    private String country;
     private boolean active;
 
     public String getUserId() {
@@ -52,6 +55,30 @@ public class User implements Serializable {
         this.email = email;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPostcode() {
+        return postcode;
+    }
+
+    public void setPostcode(String postcode) {
+        this.postcode = postcode;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
     public boolean isActive() {
         return active;
     }
@@ -76,6 +103,9 @@ public class User implements Serializable {
         private String userName;
         private String password;
         private String email;
+        private String address;
+        private String postcode;
+        private String country;
         private boolean active;
 
         public Builder(String userId) {
@@ -97,6 +127,21 @@ public class User implements Serializable {
             return this;
         }
 
+        public Builder address (String address) {
+            this.address = address;
+            return this;
+        }
+
+        public Builder postcode (String postcode) {
+            this.postcode = postcode;
+            return this;
+        }
+
+        public Builder country (String country) {
+            this.country = country;
+            return this;
+        }
+
         public Builder active (boolean active) {
             this.active = active;
             return this;
@@ -108,6 +153,9 @@ public class User implements Serializable {
             user.setUserName(userName);
             user.setPassword(password);
             user.setEmail(email);
+            user.setAddress(address);
+            user.setPostcode(postcode);
+            user.setCountry(country);
             user.setActive(active);
             return user;
         }
