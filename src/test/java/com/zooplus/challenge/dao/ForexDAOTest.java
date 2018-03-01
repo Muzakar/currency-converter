@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.stream.IntStream;
 
 import static org.junit.Assert.assertEquals;
 
@@ -44,7 +45,7 @@ public class ForexDAOTest extends AbstractDAOLayerTest {
         List<Conversions> conversionsList3 = forexDAO.getConversionsForUser("abc1");
         assertEquals(2, conversionsList3.size());
 
-        Conversions secondUpdate = forexDAO.executeQuery("SELECT c FROM Conversions c WHERE c.userId='abc1' AND c.fromCurrency='GBP'").get(0);
+        Conversions secondUpdate = forexDAO.executeQuery("SELECT c FROM Conversions c WHERE c.userId='abc1' AND c.fromCurrency='GBP'", 1).get(0);
         assertEquals(new BigDecimal(10), secondUpdate.getFromAmount());
         assertEquals(new BigDecimal(900), secondUpdate.getToAmount());
         assertEquals(new BigDecimal(90), secondUpdate.getForex());
@@ -112,6 +113,35 @@ public class ForexDAOTest extends AbstractDAOLayerTest {
             assertEquals("" + count, conversions.getToCurrency());
             assertEquals("" + count, conversions.getFromCurrency());
             count--;
+        }
+
+    }
+
+    @Test
+    public void getTop10Conversions() {
+
+        IntStream.range(0, 15).forEach(count -> forexDAO.persist(new Conversions.Builder("abc1").fromCurrency("USD")
+                .toCurrency("INR").fromAmount(new BigDecimal(10)).toAmount(new BigDecimal(650))
+                .forex(new BigDecimal(65)).build()));
+
+        IntStream.range(0, 15).forEach(count -> forexDAO.persist(new Conversions.Builder("abc2").fromCurrency("GBP")
+                .toCurrency("INR").fromAmount(new BigDecimal(10)).toAmount(new BigDecimal(900))
+                .forex(new BigDecimal(90)).build()));
+
+        List<Conversions> conversions1 = forexDAO.getConversionsForUser("abc1");
+        assertEquals(10, conversions1.size());
+        int count = 15;
+        for(Conversions conversions : conversions1){
+            assertEquals(count, conversions.getId());
+            count--;
+        }
+
+        List<Conversions> conversions2 = forexDAO.getConversionsForUser("abc2");
+        assertEquals(10, conversions2.size());
+        int count2 = 30;
+        for(Conversions conversions : conversions2){
+            assertEquals(count2, conversions.getId());
+            count2--;
         }
 
     }

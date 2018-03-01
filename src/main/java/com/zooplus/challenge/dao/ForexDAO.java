@@ -37,13 +37,13 @@ public class ForexDAO {
 
     @Transactional
     public List<Conversions> getConversionsForUser(String userId) {
-        return executeQuery("SELECT c FROM Conversions c WHERE c.userId='" + userId + "' ORDER BY c.id DESC");
+        return executeQuery("SELECT c FROM Conversions c WHERE c.userId='" + userId + "' ORDER BY c.id DESC", 10);
     }
 
     @Transactional
-    public List<Conversions> executeQuery(String queryString) {
+    public List<Conversions> executeQuery(String queryString, int maxCount) {
         logger.info("Executing query - [{}]", queryString);
-        TypedQuery<Conversions> query = em.createQuery(queryString, Conversions.class);
+        TypedQuery<Conversions> query = em.createQuery(queryString, Conversions.class).setMaxResults(maxCount);
         logger.info("Query completed - [{}]", queryString);
         return query.getResultList();
     }

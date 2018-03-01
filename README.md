@@ -6,10 +6,12 @@
 * JUnit
 * Spring Test
 * Mockito
-* Yahoo finance API for FX Rates 
+* Yahoo finance API ( for FX Rates ) 
+* Heroku ( for Cloud infrastructure )
 
 # Deployment:
-The war is deployed on Heroku. To access the page [click here](https://ccy-converter.herokuapp.com/)
+* The war is deployed on Heroku. To access the page [click here](https://ccy-converter.herokuapp.com/)
+* Heroku's webapp runner is used as web container.
 
 # Development for future:
 * Currencies are populated as static set. They need to be in sync with Yahoo Finance API. Need to find out a way to do the same.
