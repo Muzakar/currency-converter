@@ -10,7 +10,7 @@
 </head>
 <body>
 	<h2>Currency converter</h2>
-	<span>Already registered => <button onclick="window.location='login';">Login</button></span><br/><br/>
+	<span>Already registered => <button onclick="window.location='showLogin';">Login</button></span><br/><br/>
 	<span>If not registered => <button onclick="window.location='getRegistered';">Register</button></span>
 </body>
 </html>

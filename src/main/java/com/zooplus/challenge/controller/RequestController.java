@@ -111,7 +111,7 @@ public class RequestController {
             if (!StringUtils.isBlank(userId)) {
                 fromCurrency = fromCurrency.toUpperCase();
                 toCurrency = toCurrency.toUpperCase();
-                BigDecimal toAmount = currencyConverter.convert(userId, fromAmount, fromCurrency, toCurrency);
+                currencyConverter.convert(userId, fromAmount, fromCurrency, toCurrency);
                 User user = userServices.fetchUser(userId);
                 model.addAttribute("userId", user.getUserId());
                 model.addAttribute("userName", user.getUserName());
@@ -123,7 +123,7 @@ public class RequestController {
                 logger.error("Unable to find user in the model attributes. So, returning error page.");
                 return "error";
             }
-        } catch (IOException e) {
+        } catch (Exception e) {
             model.addAttribute("message", "Unable to fetch FX Rate for the currencies. Please select different currencies");
             logger.error("Exception while fetching FXQuote. ", e);
             return "error";
@@ -148,8 +148,9 @@ public class RequestController {
      *
      * @return - name of login page
      */
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String loginPage() {
+    @RequestMapping(value = "/showLogin", method = RequestMethod.GET)
+    public String loginPage(Model model) {
+        model.addAttribute("userId", "");
         return "login";
     }
 

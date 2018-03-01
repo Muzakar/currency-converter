@@ -1,4 +1,5 @@
 # Tech stack:
+* Java (JDK 1.8)
 * Spring MVC
 * Hibernate
 * H2 DB
