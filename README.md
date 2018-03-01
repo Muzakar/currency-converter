@@ -10,7 +10,7 @@
 * Heroku ( for Cloud infrastructure )
 
 # Deployment:
-* The war is deployed on Heroku. To access the page [click here](https://ccy-converter.herokuapp.com/)
+* The war is deployed on Heroku. To access the page [click here](https://ccy-converter.herokuapp.com/){:target="_blank"}
 * Heroku's webapp runner is used as web container.
 ## Steps to Deploy:
 * Login with your Heroku Id.
