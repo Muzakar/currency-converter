@@ -7,7 +7,7 @@
 <meta charset="utf-8">
 <title>Currency Converter</title>
 </head>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+<script type='text/javascript' src="<%=request.getContextPath()%>/resources/js/jquery.js"></script>
 <body>
 	<h2>Currency converter Login</h2>
 	<form id="loginForm" method="post" action="validate">
