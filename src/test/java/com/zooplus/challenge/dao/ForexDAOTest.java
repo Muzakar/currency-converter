@@ -130,19 +130,9 @@ public class ForexDAOTest extends AbstractDAOLayerTest {
 
         List<Conversions> conversions1 = forexDAO.getConversionsForUser("abc1");
         assertEquals(10, conversions1.size());
-        int count = 15;
-        for(Conversions conversions : conversions1){
-            assertEquals(count, conversions.getId());
-            count--;
-        }
 
         List<Conversions> conversions2 = forexDAO.getConversionsForUser("abc2");
         assertEquals(10, conversions2.size());
-        int count2 = 30;
-        for(Conversions conversions : conversions2){
-            assertEquals(count2, conversions.getId());
-            count2--;
-        }
 
     }
 
