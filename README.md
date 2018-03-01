@@ -18,7 +18,6 @@
 * Push the code into Heroku. (Command: git push heroku master)
 * Deploy the war. (Command: mvn clean heroku:deploy-war)
 * Once deployed, the link to access the application will be specified in the console.
-* To stop the process (Command: heroku ps:scale web=0)
 
 # Development for future:
 * Currencies are populated as static set. They need to be in sync with Yahoo Finance API. Need to find out a way to do the same.
