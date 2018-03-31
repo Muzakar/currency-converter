@@ -1,7 +1,7 @@
-package com.zooplus.challenge.services;
+package com.mk.challenge.services;
 
-import com.zooplus.challenge.dao.UserDAO;
-import com.zooplus.challenge.model.User;
+import com.mk.challenge.dao.UserDAO;
+import com.mk.challenge.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

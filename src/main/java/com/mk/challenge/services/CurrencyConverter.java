@@ -1,7 +1,7 @@
-package com.zooplus.challenge.services;
+package com.mk.challenge.services;
 
-import com.zooplus.challenge.dao.ForexDAO;
-import com.zooplus.challenge.model.Conversions;
+import com.mk.challenge.dao.ForexDAO;
+import com.mk.challenge.model.Conversions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,4 +1,4 @@
-package com.zooplus.challenge.model;
+package com.mk.challenge.model;
 
 import javax.persistence.*;
 import java.io.Serializable;

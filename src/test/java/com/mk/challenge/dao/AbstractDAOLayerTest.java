@@ -1,4 +1,4 @@
-package com.zooplus.challenge.dao;
+package com.mk.challenge.dao;
 
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;

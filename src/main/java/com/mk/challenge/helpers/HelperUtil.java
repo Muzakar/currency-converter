@@ -1,4 +1,4 @@
-package com.zooplus.challenge.helpers;
+package com.mk.challenge.helpers;
 
 import com.google.common.collect.Sets;
 

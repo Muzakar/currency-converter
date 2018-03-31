@@ -1,6 +1,6 @@
-package com.zooplus.challenge.dao;
+package com.mk.challenge.dao;
 
-import com.zooplus.challenge.model.User;
+import com.mk.challenge.model.User;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 

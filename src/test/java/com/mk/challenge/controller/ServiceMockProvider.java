@@ -1,10 +1,10 @@
-package com.zooplus.challenge.controller;
+package com.mk.challenge.controller;
 
-import com.zooplus.challenge.dao.ForexDAO;
-import com.zooplus.challenge.dao.UserDAO;
-import com.zooplus.challenge.helpers.HelperUtil;
-import com.zooplus.challenge.services.CurrencyConverter;
-import com.zooplus.challenge.services.UserServices;
+import com.mk.challenge.dao.ForexDAO;
+import com.mk.challenge.dao.UserDAO;
+import com.mk.challenge.services.CurrencyConverter;
+import com.mk.challenge.services.UserServices;
+import com.mk.challenge.helpers.HelperUtil;
 import org.mockito.Mockito;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -19,8 +19,8 @@
 
     <mvc:resources mapping="/resources/**" location="/resources/" />
 
-    <bean id="currencies" class="com.zooplus.challenge.helpers.HelperUtil" factory-method="getCurrencies"/>
-    <bean id="countries" class="com.zooplus.challenge.helpers.HelperUtil" factory-method="getCountries"/>
+    <bean id="currencies" class="com.mk.challenge.helpers.HelperUtil" factory-method="getCurrencies"/>
+    <bean id="countries" class="com.mk.challenge.helpers.HelperUtil" factory-method="getCountries"/>
 
 	<!-- view resolver for rendering the final output -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">

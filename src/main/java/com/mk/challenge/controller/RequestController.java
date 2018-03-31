@@ -1,8 +1,8 @@
-package com.zooplus.challenge.controller;
+package com.mk.challenge.controller;
 
-import com.zooplus.challenge.model.User;
-import com.zooplus.challenge.services.CurrencyConverter;
-import com.zooplus.challenge.services.UserServices;
+import com.mk.challenge.services.CurrencyConverter;
+import com.mk.challenge.model.User;
+import com.mk.challenge.services.UserServices;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Set;
 

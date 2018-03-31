@@ -1,9 +1,9 @@
-package com.zooplus.challenge.controller;
+package com.mk.challenge.controller;
 
-import com.zooplus.challenge.helpers.HelperUtil;
-import com.zooplus.challenge.model.User;
-import com.zooplus.challenge.services.CurrencyConverter;
-import com.zooplus.challenge.services.UserServices;
+import com.mk.challenge.model.User;
+import com.mk.challenge.services.CurrencyConverter;
+import com.mk.challenge.services.UserServices;
+import com.mk.challenge.helpers.HelperUtil;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,7 +16,6 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 
